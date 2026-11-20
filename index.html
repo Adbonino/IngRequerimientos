@@ -4,9 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Mis cuentos</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Georgia, serif;
@@ -62,23 +67,8 @@
     iframe {
       display: block;
       width: 100%;
-      height: 800px;
+      height: 850px;
       border: none;
-    }
-
-    .botones {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .botones a {
-      display: inline-block;
-      background: #755548;
-      color: white;
-      padding: 12px 22px;
-      text-decoration: none;
-      border-radius: 5px;
-      font-family: Arial, sans-serif;
     }
 
     footer {
@@ -89,6 +79,20 @@
       font-size: 13px;
     }
 
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 30px;
+      }
+
+      main {
+        margin: 25px auto;
+        padding: 0 10px;
+      }
+
+      iframe {
+        height: 650px;
+      }
+    }
   </style>
 </head>
 
@@ -110,15 +114,10 @@
     <div class="visor">
 
       <iframe
-        src="cuento.pdf#view=FitH"
-        title="Leer el cuento">
+        src="cuento.pdf#toolbar=0&navpanes=0&view=FitH"
+        title="Leer el cuento"
+        loading="lazy">
       </iframe>
-
-      <div class="botones">
-        <a href="cuento.pdf" download>
-          Descargar PDF
-        </a>
-      </div>
 
     </div>
 
@@ -130,3 +129,6 @@
 
 </body>
 </html>
+
+
+ 
