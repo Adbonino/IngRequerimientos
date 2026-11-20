@@ -22,11 +22,13 @@ body {
 /* ENCABEZADO */
 
 header {
-  height: 85px;
+   height: 85px;
   background: #343b46;
   color: white;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   padding: 0 30px;
 }
 
@@ -36,6 +38,12 @@ header h1 {
   margin: 0;
 }
 
+ header h3 {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 3px 0 0 0;
+} 
+  
 /* ESTRUCTURA */
 
 .contenedor {
