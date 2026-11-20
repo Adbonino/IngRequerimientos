@@ -2,133 +2,296 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mis cuentos</title>
+<title>Biblioteca de cuentos</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Georgia, serif;
-      background: #f8f6f2;
-      color: #333;
-    }
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: #f8f6f2;
+  color: #333;
+}
 
-    header {
-      background: #e9e1d6;
-      text-align: center;
-      padding: 45px 20px;
-    }
+/* ENCABEZADO */
 
-    header h1 {
-      font-size: 38px;
-      font-weight: normal;
-      margin: 0 0 12px;
-    }
+header {
+  height: 85px;
+  background: #343b46;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+}
 
-    header p {
-      font-family: Arial, sans-serif;
-      color: #666;
-      margin: 0;
-    }
+header h1 {
+  font-size: 27px;
+  font-weight: normal;
+  margin: 0;
+}
 
-    main {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+/* ESTRUCTURA */
 
-    h2 {
-      text-align: center;
-      font-weight: normal;
-      font-size: 27px;
-      margin-bottom: 12px;
-    }
+.contenedor {
+  display: flex;
+  min-height: calc(100vh - 85px);
+}
 
-    .descripcion {
-      text-align: center;
-      font-family: Arial, sans-serif;
-      color: #666;
-      margin-bottom: 30px;
-    }
+/* MENU LATERAL */
 
-    .visor {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-    }
+aside {
+  width: 260px;
+  flex-shrink: 0;
+  background: #eae5dc;
+  padding: 25px 18px;
+}
 
-    iframe {
-      display: block;
-      width: 100%;
-      height: 850px;
-      border: none;
-    }
+.menu-titulo {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #777;
+  margin-bottom: 25px;
+}
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #888;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-    }
+.menu-principal {
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 12px 5px;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #38332e;
+  cursor: pointer;
+}
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 30px;
-      }
+.menu-principal:hover {
+  color: #755548;
+}
 
-      main {
-        margin: 25px auto;
-        padding: 0 10px;
-      }
+.flecha {
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform .2s;
+}
 
-      iframe {
-        height: 650px;
-      }
-    }
-  </style>
+.menu-principal.abierto .flecha {
+  transform: rotate(90deg);
+}
+
+/* LISTA DE CUENTOS */
+
+.lista-cuentos {
+  display: none;
+  padding-left: 18px;
+}
+
+.lista-cuentos.visible {
+  display: block;
+}
+
+.cuento {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  padding: 12px 8px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #514940;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+
+.cuento:hover,
+.cuento.seleccionado {
+  color: #755548;
+  background: #ded6ca;
+  border-left-color: #755548;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+  flex: 1;
+  min-width: 0;
+  padding: 30px;
+}
+
+#titulo-cuento {
+  font-size: 27px;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 25px;
+}
+
+.visor {
+  width: 100%;
+  height: calc(100vh - 180px);
+  min-height: 500px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* PANTALLA INICIAL */
+
+.inicio {
+  height: calc(100vh - 180px);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #897d70;
+  font-size: 19px;
+}
+
+/* CELULARES */
+
+@media (max-width: 650px) {
+
+  header {
+    height: 70px;
+    padding: 0 18px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  .contenedor {
+    display: block;
+    min-height: calc(100vh - 70px);
+  }
+
+  aside {
+    width: 100%;
+    padding: 12px 18px;
+  }
+
+  .menu-titulo {
+    display: none;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .visor {
+    height: 75vh;
+  }
+
+  #titulo-cuento {
+    font-size: 23px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Mis cuentos</h1>
-    <p>Un espacio para compartir historias y lecturas</p>
-  </header>
+<header>
+  <h1>Biblioteca de cuentos</h1>
+</header>
+
+<div class="contenedor">
+
+  <aside>
+
+    <div class="menu-titulo">NAVEGACIÓN</div>
+
+    <button class="menu-principal" id="boton-menu"
+      onclick="alternarMenu()">
+
+      <span class="flecha">›</span>
+      Cuentos
+
+    </button>
+
+    <div class="lista-cuentos visible" id="lista-cuentos">
+
+      <!-- AGREGAR CUENTOS AQUÍ -->
+
+      <button class="cuento seleccionado"
+        onclick="mostrarCuento('El primer cuento', 'cuento.pdf', this)">
+        El primer cuento
+      </button>
+
+      <button class="cuento"
+        onclick="mostrarCuento('La historia del río', 'cuento2.pdf', this)">
+        La historia del río
+      </button>
+
+      <button class="cuento"
+        onclick="mostrarCuento('Un viaje inesperado', 'cuento3.pdf', this)">
+        Un viaje inesperado
+      </button>
+
+    </div>
+
+  </aside>
 
   <main>
 
-    <h2>Mi primer cuento</h2>
+    <h2 id="titulo-cuento">El primer cuento</h2>
 
-    <p class="descripcion">
-      Te invito a leer este cuento.
-    </p>
-
-    <div class="visor">
-
+    <div class="visor" id="visor">
       <iframe
-        src="IngenieríadeRequerimientosTP1.pdf#toolbar=0&navpanes=0&view=FitH"
-        title="Leer el cuento"
-        loading="lazy">
+        id="pdf"
+        src="cuento.pdf#toolbar=0&navpanes=0&view=FitH"
+        title="Lectura del cuento">
       </iframe>
-
     </div>
 
   </main>
 
-  <footer>
-    © Mis cuentos
-  </footer>
+</div>
+
+<script>
+
+function alternarMenu() {
+
+  const lista = document.getElementById("lista-cuentos");
+  const boton = document.getElementById("boton-menu");
+
+  lista.classList.toggle("visible");
+  boton.classList.toggle("abierto");
+
+}
+
+function mostrarCuento(titulo, archivo, boton) {
+
+  document.getElementById("titulo-cuento").textContent = titulo;
+
+  document.getElementById("pdf").src =
+    archivo + "#toolbar=0&navpanes=0&view=FitH";
+
+  document.querySelectorAll(".cuento").forEach(item => {
+    item.classList.remove("seleccionado");
+  });
+
+  boton.classList.add("seleccionado");
+
+}
+
+</script>
 
 </body>
 </html>
-
-
- 
